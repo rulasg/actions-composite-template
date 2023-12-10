@@ -22,6 +22,9 @@ runs:
       run: echo "{random-id}={$RANDOM}" >> $GITHUB_STATE
       shell: bash
 
+    - run: echo "random number ${{steps.random-number-generator.outputs.random-id}}"
+      shell: bash
+
     - run: echo "Goodbye $YOU"
       shell: bash
       env:
