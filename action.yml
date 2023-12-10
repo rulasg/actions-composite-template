@@ -17,9 +17,12 @@ runs:
   steps:
     - run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
+
+    - run: echo "{numberid}=${{ github.run_id }}-${{ github.run_attempt }}" >> $GITHUB_ENV
+      shell: bash
     
     - id: number-generator
-      run: echo "{number-id}=${{ github.run_id }}-${{ github.run_attempt }}" >> $GITHUB_OUTPUT
+      run: echo "{number-id}= $numberid" >> $GITHUB_OUTPUT
       shell: bash
 
     - run: echo "random number ${{steps.number-generator.outputs.number-id}}"
