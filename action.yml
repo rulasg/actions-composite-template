@@ -22,9 +22,6 @@ runs:
       run: echo "{random-id}={$RANDOM}"
       shell: bash
 
-    - run: echo "${{ github.action_path}} " >> $GIHUB_PATH
-      shell: bash
-
     - run: echo "Goodbye $YOU"
       shell: bash
       env:
