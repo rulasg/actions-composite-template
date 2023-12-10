@@ -19,10 +19,10 @@ runs:
       shell: bash
     
     - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      run: echo "{random-id}={$RANDOM}"
       shell: bash
 
-    - run: echo "${{github.action_path}}" >> $GIHUB_PATH
+    - run: echo "${{ github.action_path}} " >> $GIHUB_PATH
       shell: bash
 
     - run: echo "Goodbye $YOU"
