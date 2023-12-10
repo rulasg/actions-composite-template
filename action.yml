@@ -1,46 +1,31 @@
-name: 'Run TestingHelper'
-author: 'rulasg'
-description: 'Run tests for a PowerShell Module using TestingHelper'
+name: 'Hello World'
+description: 'Greet someone'
 branding:
   icon: "check-circle"
-  color: "orange"
+  color: "green"
 inputs:
-  Path:
-    description: 'Path to the PowerShell Module to test'
-    required: false
-    default: '.'
-#     AllowedSkippedTests:
-#       description: 'Allow to use PreRelease versions onf TestingHelper module'
-#       required: false
-#     AllowedSkippedTests:
-#       description: 'Allow tests to be skipped without failing'
-#       required: false
-#     AllowedNotImplementedTests:
-#       description: 'Allow tests to be skipped without failing'
-#       required: false
+  who-to-greet:
+    description: 'who to greet'
+    required: true
+    default: '${{github.actor}}'
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{steps.random.number-generator.outputs.random-id}}
 runs:
   using: "composite"
   steps:
-    - name: Run TestingHelper
-      shell: pwsh
+    - run: echo Hello ${{ inputs.who-to-greet }}.
+      shell: bash
+    
+    - id: random-number-generator
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      shell: bash
+
+    - run: echo "${github.action_path}" >> %GIHUB_PATH
+      shell: bash
+
+    - run: echo "Goodbye $YOU"
+      shell: bash
       env:
-        Path: ${{ inputs.Path }}
-      run: |
-
-        # Import TestingHelper
-        Import-Module TestingHelper -Force
-
-        # Execute tests and safe result
-        $result = Invoke-TestingHelper -Path $env:Path -ShowTestErrors
-
-        # Display results
-        $result
-
-        # Allow Not Implemented and Skipped tests to pass
-        $passed = $result.Tests -eq $result.Pass + $result.NotImplemented + $result.Skipped
-        # $passed = $result.Tests -eq $result.Pass
-
-        if($passed)
-        { "All test passed" | Write-Verbose -verbose ; exit 0 } 
-        else 
-        { "Not all tests passed" | Write-Verbose -verbose ; exit 1 }
+        YOU: ${{ inputs.who-to-greet }}

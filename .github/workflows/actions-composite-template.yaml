@@ -1,7 +1,5 @@
-# This is a workflow to test your PowerShell module with TestingHelper
-# https://github.com/rulasg/DemoPsModule/blob/main/.github/workflows/test_with_TestingHelper.yml
 
-name: Test with TestingHelper
+name: Test calling a WF with Actions Composite Template
 
 # Controls when the workflow will run
 on:
@@ -29,8 +27,5 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up TestingHelper
-        uses: rulasg/testinghelper-setup-action@v1
-
       # Run test with TestingHelper using local branch version
-      - uses: rulasg/testinghelper-action@v2
+      - uses: rulasg/actions-composite-template@v1

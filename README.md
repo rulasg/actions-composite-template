@@ -1,21 +1,13 @@
-# TestingHelper GitHub Action and Reusable Workflow
+# Actions Composite Template
 
-[![Test testinghelper-action](https://github.com/rulasg/testinghelper-action/actions/workflows/test-action.yml/badge.svg)](https://github.com/rulasg/testinghelper-action/actions/workflows/test-action.yml)
-
-Testing is key for a healthy and effitient development process.
-
-[TestingHelper](https://github.com/rulasg/testingHelper#readme) will help you on different faces of the developmnet lifecycle of a powershell module including testing.
-
-This Action and Reusable Workflow are wrappers around TestingHelper testing functionality so that you can very easily test your powershell module and add it to the development flow as a PullRequest check.
-
-The following two samples are equivalent. The first one will call the action as a step and the second one will run calling the reusable workflow.
+Composite action template to learn and seed other actions.
 
 ## Calling the action
 
 This workflow will run the action as a step to prepare the runner to run tests.
 
 ```yaml
-name: Test with TestingHelper-Action
+name: Call Action Composite Template
 
 on:
 
@@ -39,15 +31,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-        # Setup TestingHelper for later use
-      - name: Setup TestingHelper
-        uses: rulasg/testinghelper-setup-action@v1
-        with:
-          Version: '2.0'
+      # Setup TestingHelper for later use
+      - name: Call Action Composite Template with no input
+        uses: rulasg/actions-composite-template@v1
 
-        # Use setup TestingHelper version to run tests
-      - name: Run tests
-        uses: rulasg/testinghelper-action@v2
+        # Setup TestingHelper for later use
+      - name: Call Action Composite Template with input
+        uses: rulasg/actions-composite-template@v1
+        with:
+          who-to-greet: 'rulasg'
 ```
 
 ## Calling the reusuable workflow
@@ -68,5 +60,5 @@ permissions:
 jobs:
   # This workflow contains a single job that will call a reusable workflow
   call-reusable-testinghelper-worfklow:
-    uses: rulasg/testinghelper-action/.github/workflows/testinghelper-workflow.yaml@main
+    uses: rulasg/actions-composite-template/.github/workflows/testinghelper-workflow.yaml@main
 ```
