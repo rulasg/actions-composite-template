@@ -19,7 +19,7 @@ runs:
       shell: bash
     
     - id: random-number-generator
-      run: echo "{random-id}={$RANDOM}" >> $GITHUB_STATE
+      run: echo "{random-id}={$RANDOM}" >> $GITHUB_OUTPUT
       shell: bash
 
     - run: echo "random number ${{steps.random-number-generator.outputs.random-id}}"
