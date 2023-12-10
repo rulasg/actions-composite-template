@@ -18,7 +18,7 @@ runs:
     - run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
 
-    - run: echo "{numberid}=${{ github.run_id }}-${{ github.run_attempt }}" >> $GITHUB_ENV
+    - run: echo "numberid=${{ github.run_id }}-${{ github.run_attempt }}" >> $GITHUB_ENV
       shell: bash
     
     - id: number-generator
