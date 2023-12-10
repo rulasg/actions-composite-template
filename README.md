@@ -17,11 +17,15 @@ jobs:
     name: Call to Actions Composite template
     runs-on: ubuntu-latest
     steps:
+      # call the action with no parameters
       - uses: rulasg/actions-composite-template@main
+
+      # call the action with parameters
       - uses: rulasg/actions-composite-template@main
         with:
           who-to-greet: "Raúl"
 
   ACT-reusable:
+    # call the reusable WF
     uses: rulasg/actions-composite-template/.github/workflows/actions-composite-template.yaml@main
 ```
