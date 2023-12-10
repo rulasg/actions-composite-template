@@ -28,7 +28,7 @@ runs:
     - run: echo "number $numberid"
       shell: bash
 
-    - run: echo "Goodbye $YOU"
+    - run: echo "Goodbye $YOU from $numberid"
       shell: bash
       env:
         YOU: ${{ inputs.who-to-greet }}
