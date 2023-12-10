@@ -25,7 +25,7 @@ runs:
       run: echo "{number-id}= $numberid" >> $GITHUB_OUTPUT
       shell: bash
 
-    - run: echo "random number ${{steps.number-generator.outputs.number-id}}"
+    - run: echo "number $numberid"
       shell: bash
 
     - run: echo "Goodbye $YOU"
