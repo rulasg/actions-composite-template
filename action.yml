@@ -11,18 +11,18 @@ inputs:
 outputs:
   random-number:
     description: "Random number"
-    value: ${{steps.random-number-generator.outputs.random-id}}
+    value: ${{steps.number-generator.outputs.number-id}}
 runs:
   using: "composite"
   steps:
     - run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
     
-    - id: random-number-generator
-      run: echo "{random-id}={$RANDOM}" >> $GITHUB_OUTPUT
+    - id: number-generator
+      run: echo "${{ github.run_id }}-${{ github.run_attempt }}"" >> $GITHUB_OUTPUT
       shell: bash
 
-    - run: echo "random number ${{steps.random-number-generator.outputs.random-id}}"
+    - run: echo "random number ${{steps.number-generator.outputs.number-id}}"
       shell: bash
 
     - run: echo "Goodbye $YOU"
